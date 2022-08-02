@@ -20,12 +20,7 @@ public class Authority implements GrantedAuthority {
     @Column(name = "authority", unique = true, nullable = false)
     private String authority;
 
-//    @ManyToMany(cascade = CascadeType.ALL)
-//    @JoinTable(
-//            name = "users_authorities",
-//            joinColumns = @JoinColumn(name = "authority_id"),
-//            inverseJoinColumns = @JoinColumn(name = "user_id")
-//    )
+
     @ManyToMany(mappedBy = "authorities", cascade = CascadeType.ALL)
     private Collection<BlogUser> users;
 
@@ -34,7 +29,6 @@ public class Authority implements GrantedAuthority {
         return "Authority{" +
                 "id=" + id +
                 ", authority='" + authority + '\'' +
-//                ", users=" + users +
                 '}';
     }
 }

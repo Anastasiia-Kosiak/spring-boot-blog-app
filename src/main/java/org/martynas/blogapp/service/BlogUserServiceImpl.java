@@ -47,16 +47,16 @@ public class BlogUserServiceImpl implements BlogUserService {
 
     @Override
     public BlogUser saveNewBlogUser(BlogUser blogUser) throws RoleNotFoundException {
-        System.err.println("saveNewBlogUser: " + blogUser);  // for testing debugging purposes
-        blogUser.setPassword(this.bcryptEncoder.encode(blogUser.getPassword())); // explicit bcrypt encoder so better approach ?
+        System.err.println("saveNewBlogUser: " + blogUser);
+        blogUser.setPassword(this.bcryptEncoder.encode(blogUser.getPassword()));
         blogUser.setEnabled(true);
         Optional<Authority> optionalAuthority = this.authorityRepository.findByAuthority(DEFAULT_ROLE);
-        System.err.println("optionalAuthority: " + optionalAuthority);  // for testing debugging purposes
+        System.err.println("optionalAuthority: " + optionalAuthority);
         if (optionalAuthority.isPresent()) {
             Authority authority = optionalAuthority.get();
             Collection<Authority> authorities = Collections.singletonList(authority);
             blogUser.setAuthorities(authorities);
-            System.err.println("blogUser after Roles: " + blogUser);  // for testing debugging purposes
+            System.err.println("blogUser after Roles: " + blogUser);
             return this.blogUserRepository.saveAndFlush(blogUser);
         } else {
             throw new RoleNotFoundException("Default role not found for blog user with username " + blogUser.getUsername());

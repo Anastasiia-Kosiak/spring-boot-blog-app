@@ -3,7 +3,17 @@ package org.martynas.blogapp.model;
 import lombok.Data;
 import org.hibernate.annotations.CreationTimestamp;
 
-import javax.persistence.*;
+import javax.persistence.Column;
+import javax.persistence.Entity;
+import javax.persistence.GeneratedValue;
+import javax.persistence.GenerationType;
+import javax.persistence.Id;
+import javax.persistence.JoinColumn;
+import javax.persistence.ManyToOne;
+import javax.persistence.SequenceGenerator;
+import javax.persistence.Table;
+import javax.persistence.Temporal;
+import javax.persistence.TemporalType;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import java.util.Date;
@@ -44,7 +54,7 @@ public class Comment {
                 "id=" + id +
                 ", body='" + body + '\'' +
                 ", creationDate=" + creationDate +
-                ", post_id=" + post.getId() + // can't go for post object it self as it will make a recursion and overflow a stack
+                ", post_id=" + post.getId() +
                 ", username=" + user.getUsername() +
                 '}';
     }

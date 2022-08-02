@@ -74,7 +74,6 @@ public class BlogUser implements UserDetails {
                 "id=" + id +
                 ", username='" + username + '\'' +
                 ", password='" + password + '\'' +
-//                ", posts=" + posts +
                 ", authorities=" + authorities +
                 '}';
     }
